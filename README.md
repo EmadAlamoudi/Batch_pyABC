@@ -3,7 +3,7 @@
 Batch scripts to allow dynamically allocate master/worker nodes for the redis implementation in pyABC
 
 ## Start a parallel pyABC run:
-run submit_job.sh with the follwing parameters:
+run `submit_job.sh` with the follwing parameters:
 * port number
 * Number of nodes
 * queue name
@@ -11,4 +11,4 @@ run submit_job.sh with the follwing parameters:
 * CPUSPERTASK
 * python script
 ## To kill all running jobs:
-run kill_all.sh
+run `kill_all.sh`
