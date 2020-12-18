@@ -12,3 +12,5 @@ run `submit_job.sh` with the follwing parameters:
 * python script
 ## To kill all running jobs:
 run `kill_all.sh`
+
+Please note that you need to change the python file to take two arguments (the `port_number` and the `host_id`). This can be done using the `argparse` package.
