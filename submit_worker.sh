@@ -1,5 +1,9 @@
 #!/bin/sh
 
+export MKL_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+export OMP_NUM_THREADS=1
+
 HOST_IP=${1}
 PORT=${2}
 TIME=${3}
