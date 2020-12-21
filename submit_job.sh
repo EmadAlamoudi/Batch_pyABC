@@ -18,7 +18,11 @@ JOB_ID=$(echo $JOB_NAME | cut -f4 -d' ') # Output sth like 8670323
 
 # Wait for redis to start
 # On PBS/Torque I had a while loop here that checked when the status of the job switched to RUNNING
-sleep 60
+while [ $(squeue --Format="jobid,name,state" | grep redis_${PORT} | awk '{print $3}') != "RUNNING" ]
+do
+        echo 'Waiting for Redis to start'
+        sleep 60
+done
 
 # Retrieve compute node of that job ID
 COMP_NODE=$(squeue | grep ${JOB_ID} | awk '{ print $8 }')
