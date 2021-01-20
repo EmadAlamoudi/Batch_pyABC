@@ -1,13 +1,12 @@
 #!/bin/sh
-#SBATCH --ntasks=3
+#SBATCH --ntasks=2
 
 # Store passed port
 cur_PWD=${1}
 PORT=${2}
 PYHTONFILE=${3}
 TIME=${4}
-CPUSPERTASK=${5}
-PARTITION=${6}
+PARTITION=${5}
 
 
 cd ${cur_PWD}
@@ -26,11 +25,6 @@ srun -n 1 --partition=${PARTITION} --account=fitmulticell /home/ealamoodi/redis-
 
 
 # Start python script
-srun -n 1 --partition=${PARTITION} --account=fitmulticell python ${PYHTONFILE} --port ${PORT} --ip ${HOST_IP} > out.txt 2> errpy.txt &
-
-# Start redis-worker
-WORKER_CPUSPERTASK=$((${CPUSPERTASK}-2))
-echo ${WORKER_CPUSPERTASK}
-srun -n ${WORKER_CPUSPERTASK} --partition=${PARTITION} --account=fitmulticell /home/ealamoodi/.local/bin/abc-redis-worker --host=${HOST_IP} --port ${PORT} --runtime ${TIME:0:2}h --processes ${WORKER_CPUSPERTASK}
+srun -n 1 --partition=${PARTITION} --account=fitmulticell python ${PYHTONFILE} --port ${PORT} --ip ${HOST_IP} > out.txt 2> errpy.txt
 
 
