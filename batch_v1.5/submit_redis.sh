@@ -5,8 +5,7 @@
 cur_PWD=${1}
 PORT=${2}
 PYHTONFILE=${3}
-TIME=${4}
-PARTITION=${5}
+PARTITION=${4}
 
 
 cd ${cur_PWD}
