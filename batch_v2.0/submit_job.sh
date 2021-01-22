@@ -13,14 +13,14 @@ then
 fi
 
 # Submit redis 
-JOB_NAME=$(sbatch --time=${TIME} --job-name=red_py_wor_${PORT} --partition=${PARTITION} submit_redis.sh ${PWD} ${PORT} ${PYTHONFILE} ${TIME} ${CPUSPERTASK})
+JOB_NAME=$(sbatch --time=${TIME} --job-name=red_py_${PORT} --partition=${PARTITION} submit_redis.sh ${PWD} ${PORT} ${PYTHONFILE} ${TIME} ${CPUSPERTASK})
 JOB_ID=$(echo $JOB_NAME | cut -f4 -d' ') # Output sth like 8670323
 
 echo 'Job_name: ' ${JOB_NAME}
 echo 'JOB_ID: ' ${JOB_ID}
 # Wait for redis to start
 # On PBS/Torque I had a while loop here that checked when the status of the job switched to RUNNING
-while [ $(squeue --Format="jobid,name,state" | grep red_py_wor_${PORT} | awk '{print $3}') != "RUNNING" ]
+while [ $(squeue --Format="jobid,name,state" | grep red_py_${PORT} | awk '{print $3}') != "RUNNING" ]
 do
         echo 'Waiting for Redis to start'
         sleep 60
