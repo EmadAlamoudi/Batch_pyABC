@@ -13,7 +13,7 @@ then
 fi
 
 # Submit redis 
-JOB_NAME=$(sbatch --time=${TIME} --job-name=red_py_wor_${PORT} --partition=${PARTITION} submit_redis.sh ${PWD} ${PORT} ${PYTHONFILE} ${TIME} ${CPUSPERTASK})
+JOB_NAME=$(sbatch --time=${TIME} --job-name=red_py_wor_${PORT} --partition=${PARTITION} submit_redis.sh ${PWD} ${PORT} ${PYTHONFILE} ${CPUSPERTASK})
 JOB_ID=$(echo $JOB_NAME | cut -f4 -d' ') # Output sth like 8670323
 
 echo 'Job_name: ' ${JOB_NAME}
