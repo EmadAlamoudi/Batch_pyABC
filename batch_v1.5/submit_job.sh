@@ -29,7 +29,7 @@ done
 COMP_NODE=$(squeue | grep ${JOB_ID} | awk '{ print $8 }')
 
 # Retrieve IP of compute node
-REDIS_IP=$(host ${COMP_NODE} | awk '{ print $4 }')
+REDIS_IP=$(host ${COMP_NODE}i | awk '{ print $4 }')
 echo 'Redis IP:' ${REDIS_IP}
 
 
