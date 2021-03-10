@@ -16,5 +16,5 @@ HOSTNAME=$(hostname)
 HOST_IP=$(host ${HOSTNAME} | awk '{ print $4 }')
 
 # Start Redis server with IP and Port 
-/home/ealamoodi/redis-stable/src/./redis-server --bind ${HOST_IP} --port ${PORT} --protected-mode no
+/home/ealamoodi/redis-stable/src/./redis-server --port ${PORT} --protected-mode no
 
