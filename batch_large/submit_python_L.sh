@@ -15,6 +15,6 @@ cd ${cur_PWD}
 source ./load_module.sh
 
 # Start redis-worker
-python ${PYHTONFILE} --host ${IP} --port ${PORT} --db ${DB} --model ${MODEL} --walltime ${TIME} --population ${POPULATION} > out.txt 2> errpy.txt &
+python ${PYHTONFILE} --ip ${IP} --port ${PORT}
 
 
