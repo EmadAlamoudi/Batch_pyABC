@@ -20,7 +20,7 @@ fi
 source ./load_module.sh
 
 # Submit redis 
-srun --nodes=1 --ntasks=1 --cpus-per-task=${CPUSPERTASK}  bash -c '${PWD}/submit_redis_L.sh $0 $1' ${PWD} ${PORT} > master_ip && redis_output.txt &
+srun --nodes=1 --ntasks=1 --cpus-per-task=${CPUSPERTASK}  bash -c 'hostname > master_ip && {PWD}/submit_redis_L.sh $0 $1' ${PWD} ${PORT} > redis_output.txt &
 # Wait for redis to start
 sleep 10
 
