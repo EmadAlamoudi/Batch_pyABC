@@ -30,10 +30,6 @@ IP_long=`cat master_ip | tr '\n' ' '`
 #MASTER_IP=`getent hosts ${IP}i | cut -d' ' -f1`
 REDIS_IP=$(host ${IP_long} | awk '{ print $4 }')
 echo 'Total number of requested nodes = '$((${N_NODES}))
-# Start python script
-srun --nodes=1 --ntasks=1 --cpus-per-task=${CPUSPERTASK} submit_python_L.sh ${PWD} ${REDIS_IP} ${PORT} ${PYTHONFILE} > python_output.txt &
-
-echo 'Python script is running'
 
 # Start redis-worker
 for i in $(seq 1 $((N_NODES-2)))
@@ -41,10 +37,11 @@ do
     srun --nodes=1 --ntasks=1 --cpus-per-task=${CPUSPERTASK} submit_worker_L.sh ${PWD} ${REDIS_IP} ${PORT} ${TIME} ${CPUSPERTASK} > worker_${i}_output.txt &
 
 done
-srun --nodes=1 --ntasks=1 --cpus-per-task=${CPUSPERTASK} submit_worker_L.sh ${PWD} ${REDIS_IP} ${PORT} ${TIME} ${CPUSPERTASK} worker_${i}_output.txt
+srun --nodes=1 --ntasks=1 --cpus-per-task=${CPUSPERTASK} submit_worker_L.sh ${PWD} ${REDIS_IP} ${PORT} ${TIME} ${CPUSPERTASK} worker_${i}_output.txt &
 
 
-
+# Start python script
+srun --nodes=1 --ntasks=1 --cpus-per-task=${CPUSPERTASK} submit_python_L.sh ${PWD} ${REDIS_IP} ${PORT} ${PYTHONFILE} > python_output.txt 
 
 
 
